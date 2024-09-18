@@ -1,4 +1,3 @@
-/* Estilo geral */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -9,115 +8,76 @@ body {
     margin: 0;
 }
 
-/* Container principal */
 .container {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    width: 300px;
 }
 
-/* Título */
 h1 {
     text-align: center;
-    color: #333;
-    margin-bottom: 20px; /* Espaço abaixo do título */
 }
 
-/* Estilo para a área de entrada e botão de adicionar */
 .input-container {
     display: flex;
-    justify-content: space-between;
     margin-bottom: 10px;
 }
 
 input[type="text"] {
     flex: 1;
-    padding: 8px; /* Menor padding */
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-right: 8px; /* Menor margem direita */
+    margin-right: 8px;
 }
 
 button {
-    padding: 6px 12px; /* Menor padding */
+    padding: 6px 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9em; /* Tamanho de fonte ajustado */
 }
 
 button:hover {
-    opacity: 0.8; /* Efeito visual ao passar o mouse */
+    opacity: 0.8;
 }
 
-/* Botão Adicionar */
-#addItemBtn {
+button:nth-of-type(1) {
     background-color: #28a745;
     color: white;
 }
 
-#addItemBtn:hover {
-    background-color: #218838;
+button:nth-of-type(2) {
+    background-color: #ffc107;
+    color: black;
 }
 
-/* Lista de tarefas */
+button:nth-of-type(3) {
+    background-color: #dc3545;
+    color: white;
+}
+
+.filter-buttons {
+    margin: 10px 0;
+}
+
+.filter-buttons button {
+    margin-right: 5px;
+}
+
 ul {
     list-style: none;
     padding: 0;
 }
 
 li {
-    padding: 8px; /* Menor padding */
+    padding: 8px;
     border: 1px solid #ccc;
     margin-bottom: 5px;
     display: flex;
-    justify-content: space-between; /* Botões alinhados à direita */
+    justify-content: space-between;
     align-items: center;
     border-radius: 4px;
-}
-
-li button {
-    padding: 4px 8px; /* Menor padding */
-    font-size: 0.8em; /* Tamanho de fonte reduzido */
-    margin-left: 8px; /* Espaço entre os botões */
-}
-
-/* Estilo do botão Editar */
-.edit-btn {
-    background-color: #ffc107; /* Cor do botão Editar */
-    color: black; /* Cor do texto do botão Editar */
-}
-
-.edit-btn:hover {
-    background-color: #e0a800; /* Cor ao passar o mouse no botão Editar */
-}
-
-/* Estilo do botão Remover */
-.remove-btn {
-    background-color: #dc3545; /* Cor do botão Remover */
-    color: white; /* Cor do texto do botão Remover */
-}
-
-.remove-btn:hover {
-    background-color: #c82333; /* Cor ao passar o mouse no botão Remover */
-}
-
-/* Botões de filtro */
-.filter-buttons {
-    display: flex;
-    justify-content: space-between; /* Botões lado a lado */
-}
-
-.filter-buttons button {
-    background-color: #007bff;
-    color: white;
-    padding: 4px 8px; /* Menor padding */
-    font-size: 0.8em; /* Tamanho de fonte reduzido */
-    width: auto; /* Ajuste automático de largura para ficar mais compacto */
-}
-
-.filter-buttons button:hover {
-    background-color: #0056b3;
 }

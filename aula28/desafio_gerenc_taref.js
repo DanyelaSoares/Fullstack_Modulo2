@@ -5,74 +5,105 @@ const showAllBtn = document.getElementById('showAllBtn');
 const showCompletedBtn = document.getElementById('showCompletedBtn');
 const showNotCompletedBtn = document.getElementById('showNotCompletedBtn');
 
-// Função para adicionar um novo item
+let tasks = [];
+
+// Adiciona uma nova tarefa
 function addItem() {
     const itemText = itemInput.value;
-
-    if (itemText !== '') {
-        const li = document.createElement('li');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        li.appendChild(checkbox);
-        li.appendChild(document.createTextNode(itemText));
-
-        // Botão de Editar
-        const editBtn = document.createElement('button');
-        editBtn.textContent = 'Editar';
-        editBtn.className = 'edit-btn';
-        li.appendChild(editBtn);
-
-        // Botão de Remover
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = 'Remover';
-        removeBtn.className = 'remove-btn';
-        li.appendChild(removeBtn);
-
-        itemList.appendChild(li);
+    if (itemText) {
+        tasks.push({ text: itemText, completed: false });
         itemInput.value = '';
-
-        // Função de remover tarefa
-        removeBtn.onclick = function() {
-            itemList.removeChild(li);
-        };
-
-        // Função de editar tarefa
-        editBtn.onclick = function() {
-            const newTaskText = prompt('Edite a tarefa:', itemText);
-            if (newTaskText !== null && newTaskText.trim() !== '') {
-                li.childNodes[1].textContent = newTaskText; // Atualiza o texto da tarefa
-            }
-        };
+        renderTasks();
     }
 }
 
-// Adiciona evento de clique ao botão de adicionar
-addItemBtn.addEventListener('click', addItem);
+// Marca a tarefa como concluída
+function toggleCompleted(index) {
+    tasks[index].completed = !tasks[index].completed;
+    renderTasks();
+}
 
-// Também permite adicionar o item pressionando "Enter"
+// Renderiza a lista de tarefas
+function renderTasks() {
+    itemList.innerHTML = '';
+    for (let i = 0; i < tasks.length; i++) {
+        const task = tasks[i];
+        const li = document.createElement('li');
+        
+        const textNode = document.createTextNode(task.text);
+        li.appendChild(textNode);
+
+        // Botão Editar
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Editar';
+        editBtn.onclick = function() {
+            const newText = prompt('Edita a tarefa:', task.text);
+            if (newText) {
+                task.text = newText;
+                renderTasks();
+            }
+        };
+        li.appendChild(editBtn);
+
+        // Botão Remover
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remover';
+        removeBtn.onclick = function() {
+            tasks.splice(i, 1);
+            renderTasks();
+        };
+        li.appendChild(removeBtn);
+
+        // Botão Concluir
+        const completeBtn = document.createElement('button');
+        completeBtn.textContent = task.completed ? 'Desmarcar' : 'Concluir';
+        completeBtn.onclick = function() {
+            toggleCompleted(i);
+        };
+        li.appendChild(completeBtn);
+
+        // Adiciona estilo para tarefas concluídas
+        if (task.completed) {
+            li.style.textDecoration = 'line-through';
+        }
+
+        itemList.appendChild(li);
+    }
+}
+
+// Adiciona eventos aos botões
+addItemBtn.onclick = addItem;
+
+showAllBtn.onclick = function() {
+    renderTasks();
+};
+
+showCompletedBtn.onclick = function() {
+    itemList.innerHTML = '';
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].completed) {
+            const li = document.createElement('li');
+            li.textContent = tasks[i].text;
+            li.style.textDecoration = 'line-through';
+            itemList.appendChild(li);
+        }
+    }
+};
+
+showNotCompletedBtn.onclick = function() {
+    itemList.innerHTML = '';
+    for (let i = 0; i < tasks.length; i++) {
+        if (!tasks[i].completed) {
+            const li = document.createElement('li');
+            li.textContent = tasks[i].text;
+            itemList.appendChild(li);
+        }
+    }
+};
+
+// Permite adicionar tarefa pressionando "Enter"
 itemInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
         addItem();
     }
 });
-
-// Filtrar tarefas
-showAllBtn.onclick = function() {
-    Array.from(itemList.children).forEach(li => {
-        li.style.display = 'flex'; // Mostra todas as tarefas
-    });
-};
-
-showCompletedBtn.onclick = function() {
-    Array.from(itemList.children).forEach(li => {
-        const checkbox = li.querySelector('input[type="checkbox"]');
-        li.style.display = checkbox.checked ? 'flex' : 'none'; // Mostra apenas tarefas concluídas
-    });
-};
-
-showNotCompletedBtn.onclick = function() {
-    Array.from(itemList.children).forEach(li => {
-        const checkbox = li.querySelector('input[type="checkbox"]');
-        li.style.display = checkbox.checked ? 'none' : 'flex'; // Mostra apenas tarefas não concluídas
-    });
-};
