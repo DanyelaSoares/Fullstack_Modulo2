@@ -1,0 +1,93 @@
+/* Estilo geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container principal */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+/* Estilo para a área de entrada e botão de adicionar */
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Lista de tarefas */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+}
+
+li button {
+    background-color: #dc3545;
+    padding: 0px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-size: 0.9em; 
+    margin-left: 10px;
+}
+
+li button:hover {
+    background-color: #c82333;
+}
+
+/* Botões de filtro */
+.filter-buttons {
+    display: flex;
+    justify-content: space-between; /* Botões lado a lado */
+}
+
+.filter-buttons button {
+    background-color: #007bff;
+    padding: 5px;
+    width: 30%;
+}
+
+.filter-buttons button:hover {
+    background-color: #0056b3;
+}
